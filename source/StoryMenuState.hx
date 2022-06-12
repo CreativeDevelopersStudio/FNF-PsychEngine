@@ -329,6 +329,13 @@ class StoryMenuState extends MusicBeatState
 		if (curDifficulty >= CoolUtil.difficulties.length)
 			curDifficulty = 0;
 
+
+		cur = weekData.weeksList[curWeek];
+		if (curDifficulty < 0)
+			cur.weekBackground = 'stage';
+		if (curDifficulty < CoolUtil.difficulties.length)
+			cur.weekBackground = cur.weekBackgroundSecond;
+
 		WeekData.setDirectoryFromWeek(loadedWeeks[curWeek]);
 
 		var diff:String = CoolUtil.difficulties[curDifficulty];

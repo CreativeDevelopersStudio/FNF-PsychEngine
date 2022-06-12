@@ -37,6 +37,7 @@ class WeekData {
 	public var songs:Array<Dynamic>;
 	public var weekCharacters:Array<String>;
 	public var weekBackground:String;
+	public var weekBackgroundSecond:String;
 	public var weekBefore:String;
 	public var storyName:String;
 	public var weekName:String;
@@ -54,6 +55,7 @@ class WeekData {
 			songs: [["Bopeebo", "dad", [146, 113, 253]], ["Fresh", "dad", [146, 113, 253]], ["Dad Battle", "dad", [146, 113, 253]]],
 			weekCharacters: ['dad', 'bf', 'gf'],
 			weekBackground: 'stage',
+			weekBackgroundSecond: 'philly';
 			weekBefore: 'tutorial',
 			storyName: 'Your New Week',
 			weekName: 'Custom Week',
@@ -72,6 +74,7 @@ class WeekData {
 		songs = weekFile.songs;
 		weekCharacters = weekFile.weekCharacters;
 		weekBackground = weekFile.weekBackground;
+		weekBackgroundSecond = weekFile.weekBackgroundSecond;
 		weekBefore = weekFile.weekBefore;
 		storyName = weekFile.storyName;
 		weekName = weekFile.weekName;

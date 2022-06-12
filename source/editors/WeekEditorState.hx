@@ -160,6 +160,7 @@ class WeekEditorState extends MusicBeatState
 
 	var songsInputText:FlxUIInputText;
 	var backgroundInputText:FlxUIInputText;
+	var backgroundsecondInputText:FlxUIInputText;
 	var displayNameInputText:FlxUIInputText;
 	var weekNameInputText:FlxUIInputText;
 	var weekFileInputText:FlxUIInputText;
@@ -188,9 +189,12 @@ class WeekEditorState extends MusicBeatState
 
 		backgroundInputText = new FlxUIInputText(10, opponentInputText.y + 40, 120, '', 8);
 		blockPressWhileTypingOn.push(backgroundInputText);
-		
 
-		displayNameInputText = new FlxUIInputText(10, backgroundInputText.y + 60, 200, '', 8);
+
+		backgroundsecondInputText = new FlxUIInputText(10, backgroundInputText.y + 40, 120, '', 8)
+		blockPressWhileTypingOn.push(backgroundsecondInputText)
+
+		displayNameInputText = new FlxUIInputText(10, backgroundsecondInputText.y + 60, 200, '', 8);
 		blockPressWhileTypingOn.push(backgroundInputText);
 
 		weekNameInputText = new FlxUIInputText(10, displayNameInputText.y + 60, 150, '', 8);
@@ -209,6 +213,7 @@ class WeekEditorState extends MusicBeatState
 		tab_group.add(new FlxText(songsInputText.x, songsInputText.y - 18, 0, 'Songs:'));
 		tab_group.add(new FlxText(opponentInputText.x, opponentInputText.y - 18, 0, 'Characters:'));
 		tab_group.add(new FlxText(backgroundInputText.x, backgroundInputText.y - 18, 0, 'Background Asset:'));
+		tab_group.add(new FlxText(backgroundsecondInputText.x, backgroundsecondInputText.y - 18, 0, 'Second Background Asset:'));
 		tab_group.add(new FlxText(displayNameInputText.x, displayNameInputText.y - 18, 0, 'Display Name:'));
 		tab_group.add(new FlxText(weekNameInputText.x, weekNameInputText.y - 18, 0, 'Week Name (for Reset Score Menu):'));
 		tab_group.add(new FlxText(weekFileInputText.x, weekFileInputText.y - 18, 0, 'Week File:'));
@@ -218,6 +223,7 @@ class WeekEditorState extends MusicBeatState
 		tab_group.add(boyfriendInputText);
 		tab_group.add(girlfriendInputText);
 		tab_group.add(backgroundInputText);
+		tab_group.add(backgroundsecondInputText);
 
 		tab_group.add(displayNameInputText);
 		tab_group.add(weekNameInputText);
@@ -274,6 +280,7 @@ class WeekEditorState extends MusicBeatState
 		}
 		songsInputText.text = weekString;
 		backgroundInputText.text = weekFile.weekBackground;
+		backgroundsecondInputText.text = weekFile.weekBackgroundSecond;
 		displayNameInputText.text = weekFile.storyName;
 		weekNameInputText.text = weekFile.weekName;
 		weekFileInputText.text = weekFileName;
@@ -344,6 +351,24 @@ class WeekEditorState extends MusicBeatState
 		}
 	}
 
+	function reloadSecondBG() {
+		bg2Sprite.visible = true;
+		var assetName:String = weekFile.weekBackgroundSecond;
+
+		var isMissing:Bool = true;
+		if(assetName != null && assetName.length > 0) {
+			if( #if MODS_ALLOWED FileSystem.exists(Paths.modsImages('menubackgrounds/second_' + assetName)) || #end
+			Assets.exists(Paths.getPath('images/menubackgrounds/second_' + assetName + '.png', IMAGE), IMAGE)) {
+				bgSprite.loadGraphic(Paths.image('menubackgrounds/second_' + assetName));
+				isMissing = false;
+			}
+		}
+
+		if(isMissing) {
+			bg2Sprite.visible = false;
+		}
+	}
+
 	function reloadWeekThing() {
 		weekThing.visible = true;
 		missingFileText.visible = false;
@@ -383,6 +408,9 @@ class WeekEditorState extends MusicBeatState
 				updateText();
 			} else if(sender == backgroundInputText) {
 				weekFile.weekBackground = backgroundInputText.text.trim();
+				reloadBG();
+			} else if(sender == backgroundsecondInputText) {
+				weekFile.weekBackgroundSecond = backgroundsecondInputText.text.trim();
 				reloadBG();
 			} else if(sender == displayNameInputText) {
 				weekFile.storyName = displayNameInputText.text.trim();
