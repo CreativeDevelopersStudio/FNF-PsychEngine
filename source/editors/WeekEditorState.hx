@@ -192,7 +192,7 @@ class WeekEditorState extends MusicBeatState
 
 
 		backgroundsecondInputText = new FlxUIInputText(10, backgroundInputText.y + 40, 120, '', 8)
-		blockPressWhileTypingOn.push(backgroundsecondInputText);x
+		blockPressWhileTypingOn.push(backgroundsecondInputText);
 
 		displayNameInputText = new FlxUIInputText(10, backgroundsecondInputText.y + 60, 200, '', 8);
 		blockPressWhileTypingOn.push(backgroundInputText);
