@@ -411,7 +411,7 @@ class WeekEditorState extends MusicBeatState
 				reloadBG();
 			} else if(sender == backgroundsecondInputText) {
 				weekFile.weekBackgroundSecond = backgroundsecondInputText.text.trim();
-				reloadBG();
+				reloadSecondBG();
 			} else if(sender == displayNameInputText) {
 				weekFile.storyName = displayNameInputText.text.trim();
 				updateText();
