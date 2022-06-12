@@ -303,6 +303,7 @@ class WeekEditorState extends MusicBeatState
 		hiddenUntilUnlockCheckbox.alpha = 0.4 + 0.6 * (lockedCheckbox.checked ? 1 : 0);
 
 		reloadBG();
+		reloadSecondBG();
 		reloadWeekThing();
 		updateText();
 	}
@@ -410,7 +411,6 @@ class WeekEditorState extends MusicBeatState
 				weekFile.weekBackground = backgroundInputText.text.trim();
 				reloadBG();
 			} else if(sender == backgroundsecondInputText) {
-				weekFile.weekBackgroundSecond = backgroundsecondInputText.text.trim();
 				reloadSecondBG();
 			} else if(sender == displayNameInputText) {
 				weekFile.storyName = displayNameInputText.text.trim();
